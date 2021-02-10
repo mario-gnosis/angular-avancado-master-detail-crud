@@ -6,6 +6,7 @@ import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
 import { switchMap } from 'rxjs/operators';
 import toastr from "toastr";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-category-form',
@@ -25,7 +26,8 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -111,6 +113,7 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
         //redirect/reload component page
         () => this.router.navigate(["categories", category.id, "edit"])
       )
+      this.location.back();
     }
 
     private actionsForError(error) {
