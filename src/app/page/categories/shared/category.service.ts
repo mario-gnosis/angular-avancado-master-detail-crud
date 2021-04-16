@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Category } from './category.model';
-import { map, catchError, flatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
