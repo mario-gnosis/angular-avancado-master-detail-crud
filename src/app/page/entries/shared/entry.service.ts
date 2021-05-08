@@ -15,7 +15,7 @@ export class EntryService extends BaseResourceService<Entry>{
     protected  injector: Injector,
     private categoryService: CategoryService
     ) {
-     super("api/entries", injector);
+     super("api/entries", injector, Entry.newFromJson); //Entry.newFromJson não executa a função, senão que amazenando os comando q são executados dentro do objeto jsonDataToResourceFn
    }
 
    create(entry: Entry): Observable<Entry> {
@@ -38,17 +38,4 @@ export class EntryService extends BaseResourceService<Entry>{
     )
    }
 
-
-   protected jsonDataToResources(jsonData: any[]): Entry[] {
-     const entries: Entry[] = [];
-     jsonData.forEach(element => {
-       const entry =  Object.assign( new Entry(), element);
-       entries.push(entry);
-     });
-     return entries;
-   }
-
-   protected jsonDataToResource(jsonData: any): Entry {
-     return  Object.assign( new Entry(), jsonData);
-   }
 }

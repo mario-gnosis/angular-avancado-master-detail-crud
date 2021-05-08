@@ -135,14 +135,15 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
   private createEntry() {
     //Criar uma nova categoria e atribui a ela os valores que foram preenchidos
-    const entry: Entry = Object.assign(new Entry(), this.entryForm.value);
+    const entry: Entry = Entry.newFromJson(this.entryForm.value);
+
     this.entryService.create(entry).subscribe(
       entry => this.actionsForSucess(entry),
       error => this.actionsForError(error)
     )
   }
   private updateEntry() {
-    const entry: Entry = Object.assign(new Entry(), this.entryForm.value);
+    const entry: Entry = Entry.newFromJson(this.entryForm.value);
 
     this.entryService.update(entry).subscribe(
       entry => this.actionsForSucess(entry),
